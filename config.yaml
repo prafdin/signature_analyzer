@@ -1,0 +1,6 @@
+---
+image_output:
+  blur_img: True
+  img_to_gray: True
+  img_to_bin: True
+  thin_img: True

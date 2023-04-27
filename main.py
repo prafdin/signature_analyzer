@@ -7,6 +7,7 @@ from output_helper.excel import ExcelWorkbook
 from signature_analyzer.lbp_patterns import calc_lbp_patterns
 from signature_analyzer.utils import compare_hist
 
+
 dataset_folder = r"C:\Users\ivpr0122\Documents\Personal\sign_data\test"
 
 def calc_patterns():
@@ -16,7 +17,7 @@ def calc_patterns():
             _, file_ext = os.path.splitext(image_filename)
             if file_ext in IMAGE_EXTENSIONS:
                 full_image_path = f"{signature_variations_dir}\\{image_filename}"
-                if (not os.path.exists(full_image_path.replace(file_ext, ".json"))):
+                if (True or not os.path.exists(full_image_path.replace(file_ext, ".json"))): # Remove 'True or' after debug
                     lpb_patterns = calc_lbp_patterns(Image.open(full_image_path))
                     with open(full_image_path.replace(file_ext, ".json"), 'w') as f:
                         json.dump(lpb_patterns, f)
@@ -58,4 +59,4 @@ def compare_and_write_to_excel():
 
 if __name__ == '__main__':
     calc_patterns()
-    compare_and_write_to_excel()
+    # compare_and_write_to_excel()

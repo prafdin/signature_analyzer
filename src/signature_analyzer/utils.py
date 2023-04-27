@@ -3,13 +3,7 @@ import numpy as np
 import cv2 as cv
 
 
-def img_to_gray(image: PIL.Image.Image):
-    image_copy = image.copy()
-    return image_copy.convert("L")
 
-
-def img_to_bin(image: PIL.Image.Image, threshold=125):
-    return image.point(lambda x: 255 * (x > threshold), mode='1')
 
 
 def pad_2d_matrix_to_size(a: np.ndarray, new_xsize, new_ysize, pad_value=0):

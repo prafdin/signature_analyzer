@@ -48,7 +48,3 @@ def zhangSuen(image: numpy.ndarray):
         for x, y in changing2:
             thinned_image[x][y] = 0
     return thinned_image
-
-def thinning(image: PIL.Image.Image):
-    thinned = zhangSuen(np.invert(image)).astype(int)
-    return np.array(thinned)
