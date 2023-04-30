@@ -1,7 +1,9 @@
 import json
 import os
 from PIL import Image
+import cv2 as cv
 
+from image_processor.image_processor import DefaultImageProcessorSettings, ImageProcessor
 from output_helper.common import find_files_by_pattern_recursive, IMAGE_EXTENSIONS, get_random_color
 from output_helper.excel import ExcelWorkbook
 from signature_analyzer.lbp_patterns import calc_lbp_patterns
@@ -57,6 +59,26 @@ def compare_and_write_to_excel():
     workbook.dump()
 
 
+def process_img():
+    full_image_path = f"{dataset_folder}\\052\\01_052.png"
+    image = Image.open(full_image_path)
+    default_settings = DefaultImageProcessorSettings
+    # default_settings.bin_threshold = 240
+
+    image = ImageProcessor.img_to_gray(image, default_settings)
+    image = ImageProcessor.contrast_img(image, default_settings)
+    # image = ImageProcessor.blur_img(image, default_settings)
+    image = ImageProcessor.img_to_bin(image, default_settings)
+    image = ImageProcessor.morph_open(image, default_settings)
+    #
+    default_settings.dilate_iterations = 2
+    image = ImageProcessor.dilate_img(image, default_settings)
+
+    image = ImageProcessor.erode_img(image, default_settings)
+
+    image = ImageProcessor.thin_img(image, default_settings)
+
 if __name__ == '__main__':
-    calc_patterns()
+    # calc_patterns()
     # compare_and_write_to_excel()
+    process_img()

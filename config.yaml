@@ -1,6 +1,10 @@
 ---
 image_output:
-  blur_img: True
+  blur_img: False
   img_to_gray: True
-  img_to_bin: True
+  img_to_bin: False
   thin_img: True
+  morph_open: True
+  contrast_img: True
+  dilate_img: True
+  erode_img: True
