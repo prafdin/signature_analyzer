@@ -63,6 +63,8 @@ def create_2d_square_rolling_window(a, square_window_size):
 
 
 def compare_hist(lpb_patterns_array1, lpb_patterns_array2):
-    hist1 = cv.calcHist([np.array(lpb_patterns_array1).astype(np.float32)], [0], None, [256], [0, 256])
-    hist2 = cv.calcHist([np.array(lpb_patterns_array2).astype(np.float32)], [0], None, [256], [0, 256])
+    array1_bins = int(max(lpb_patterns_array1) + 1)
+    array2_bins = int(max(lpb_patterns_array2) + 1)
+    hist1 = cv.calcHist([np.array(lpb_patterns_array1).astype(np.float32)], [0], None, [array1_bins], [0, array1_bins])
+    hist2 = cv.calcHist([np.array(lpb_patterns_array2).astype(np.float32)], [0], None, [array2_bins], [0, array2_bins])
     return cv.compareHist(hist1, hist2, cv.HISTCMP_BHATTACHARYYA)
