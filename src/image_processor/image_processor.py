@@ -68,7 +68,7 @@ class ImageProcessor:
 
         dilate_iterations = settings.dilate_iterations
         img = cv.dilate(img, kernel, iterations=dilate_iterations)
-        return PIL.Image.fromarray(img.astype(np.uint8) * 255, "L")
+        return PIL.Image.fromarray(img.astype(np.uint8)).convert("L")
 
     @staticmethod
     @image_output
@@ -78,7 +78,7 @@ class ImageProcessor:
 
         erode_iterations = settings.erode_iterations
         img = cv.erode(img, kernel, iterations=erode_iterations)
-        return PIL.Image.fromarray(img.astype(np.uint8) * 255, "L")
+        return PIL.Image.fromarray(img.astype(np.uint8)).convert("L")
 
     @staticmethod
     @image_output

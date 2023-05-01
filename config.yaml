@@ -2,7 +2,7 @@
 image_output:
   blur_img: False
   img_to_gray: True
-  img_to_bin: False
+  img_to_bin: True
   thin_img: True
   morph_open: True
   contrast_img: True
