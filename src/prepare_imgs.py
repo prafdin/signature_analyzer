@@ -80,13 +80,15 @@ def prepare_images(connection, image_id):
 
 def tests(connection):
     cursor = connection.cursor()
-    cursor.execute("SELECT image, mode, size FROM prepared_imgs WHERE image_id = ?", (565, ))
+    cursor.execute("SELECT image, mode, size FROM prepared_imgs WHERE image_id = ?", (25, ))
     image_in_bytes, mode, size = cursor.fetchall()[0]
     size = tuple(map(int, size.split(",")))
 
     image = Image.frombytes(mode=mode, size=size, data=image_in_bytes)
 
-    image.show()
+    image.save("../media/binary_img.png")
+
+    # image.show()
 
 if __name__ == '__main__':
     config = configparser.ConfigParser()
@@ -96,8 +98,8 @@ if __name__ == '__main__':
     connection = sqlite3.connect(database_name)
     cursor = connection.cursor()
 
-    # tests(connection)
-    # exit(0)
+    tests(connection)
+    exit(0)
 
     cursor.execute('SELECT image_id FROM raw_images WHERE signature_type = 1')
     image_ids = [image_id_row[0] for image_id_row in cursor.fetchall()]

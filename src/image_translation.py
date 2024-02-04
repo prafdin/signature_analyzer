@@ -15,9 +15,9 @@ def translate(image, X, Y, cx, cy):
     # x_c, y_c = x_c // 2, y_c // 2
     # x_c, y_c = 0, 0
     translation_matrix = np.float32([[1, 0, x0 - cx], [0, 1, y0 - cy]])
-    img_translation = cv2.warpAffine(image, translation_matrix, (X, Y), borderValue=(0, 0, 0))
+    img_translation = cv2.warpAffine(image, translation_matrix, (X, Y), borderValue=(255, 255, 255))
 
-    # DEBUG
+    #DEBUG
     # cv2.imshow('Translation', img_translation)
     # cv2.waitKey()
     return img_translation
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     X = 700
     Y = 500
 
-    image_id = "654"
+    image_id = "25"
 
     config = configparser.ConfigParser()
     config.read("configs.ini")
@@ -72,5 +72,5 @@ if __name__ == '__main__':
     # image = ImageProcessor.thin_img(image, DefaultImageProcessorSettings)
     # image = np.array(image)
 
-    cv2.imshow("test", image)
-    cv2.waitKey(0)
+    # cv2.imshow("test", image)
+    # cv2.waitKey(0)

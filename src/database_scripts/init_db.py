@@ -73,6 +73,16 @@ def init_db():
     ''')
 
     cursor.execute('''
+        CREATE TABLE IF NOT EXISTS images_direction_diagr (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            direction_v BLOB NOT NULL, 
+            image_id INTEGER ,
+            FOREIGN KEY (image_id) REFERENCES raw_images (image_id),
+            UNIQUE(image_id)
+        ) 
+    ''')
+
+    cursor.execute('''
         CREATE TABLE IF NOT EXISTS images_distance (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             distance INTEGER,

@@ -9,7 +9,7 @@ from PIL import Image
 
 def calc_patterns(connection, image_id):
     cursor = connection.cursor()
-    cursor.execute("SELECT image, mode, size FROM prepared_imgs WHERE image_id = ?", (image_id,))
+    cursor.execute("SELECT image, mode, size FROM thinned_prepared_imgs WHERE image_id = ?", (image_id,))
     image_in_bytes, mode, size = cursor.fetchall()[0]
     size = tuple(map(int, size.split(",")))
 
